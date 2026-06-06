@@ -20,9 +20,4 @@ A robust, real-time chat backend built with Node.js, Express.js, and Socket.IO f
 - MongoDB (local or MongoDB Atlas)
 - npm or yarn package manager
 
-## 🚀 Installation
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/yourusername/chat-app-backend.git
-cd chat-app-backend
