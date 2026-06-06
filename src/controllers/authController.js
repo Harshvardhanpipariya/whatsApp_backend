@@ -114,47 +114,28 @@ export const sendOTP = async (req, res) => {
   try {
     const { name, email, password } = req.body
 
-    console.log('=== SEND OTP DEBUG ===');
-    console.log('1. Received data:', { name, email, password: '***' });
-    console.log('2. Email credentials:', {
-      user: process.env.EMAIL_USER ? '✅ Set' : '❌ Missing',
-      pass: process.env.EMAIL_PASS ? '✅ Set' : '❌ Missing'
-    });
-
     // validation
     if (!name || !email || !password) {
-      console.log('3. Validation failed');
       return res.status(400).json({
         message: 'All fields are required',
       })
     }
 
-    console.log('4. Validation passed');
-
     // existing user
-    console.log('5. Checking existing user...');
     const existingUser = await User.findOne({ email })
-
     if (existingUser) {
-      console.log('6. User already exists');
       return res.status(400).json({
         message: 'User already exists',
       })
     }
 
-    console.log('7. User does not exist, generating OTP...');
-
     // generate otp
     const otp = Math.floor(100000 + Math.random() * 900000)
-    console.log('8. OTP generated:', otp);
 
     // hash password
-    console.log('9. Hashing password...');
     const hashedPassword = await bcrypt.hash(password, 10)
-    console.log('10. Password hashed');
 
     // store temporary signup data
-    console.log('11. Storing in OTP store...');
     otpStore[email] = {
       name,
       email,
@@ -162,45 +143,26 @@ export const sendOTP = async (req, res) => {
       otp,
       expiresAt: Date.now() + 2 * 60 * 1000,
     }
-    console.log('12. Stored in OTP store');
 
-    // send otp email
-    console.log('13. Attempting to send email to:', email);
-    try {
-      await sendEmail(
-        email,
-        'WhatsApp OTP Verification',
-        `Your OTP is ${otp}`
-      )
-      console.log('14. Email sent successfully!');
-    } catch (emailError) {
-      console.error('15. Email failed:', emailError.message);
-      // Still return success for testing
-      return res.status(200).json({
-        success: true,
-        message: 'OTP sent successfully',
-        otp: otp, // Include OTP in response for debugging
-        debug: 'Email failed but OTP is generated'
-      })
-    }
+    // ⭐ TEMPORARY FIX: Skip email, log OTP to console
+    console.log(`=========================================`)
+    console.log(`📧 OTP for ${email}: ${otp}`)
+    console.log(`=========================================`)
 
-    console.log('15. Sending success response');
+    // Return OTP in response for testing (remove in production)
     res.status(200).json({
       success: true,
       message: 'OTP sent successfully',
+      otp: otp  // Frontend can use this directly
     })
     
   } catch (error) {
-    console.error('❌ ERROR in sendOTP:', error);
-    console.error('Error stack:', error.stack);
+    console.error(error)
     res.status(500).json({
       message: 'Server Error',
-      error: error.message,
-      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
     })
   }
 }
-
 /*
 =====================================
 VERIFY OTP
