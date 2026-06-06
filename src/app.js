@@ -12,24 +12,18 @@ import messageRoutes from './routes/messageRoutes.js'; // Add this
 const app = express();
 const server = http.createServer(app);
 
+app.use(cors({
+  origin: true,
+  credentials: true,
+}));
+
 const io = new Server(server, {
   cors: {
-    origin: [
-      "https://whats-app-frontend-cgk5micwt-harshvardhan-pipariyas-projects.vercel.app",
-      "https://whats-app-frontend-4f8g38qc0-harshvardhan-pipariyas-projects.vercel.app"
-    ],
+    origin: true,
     methods: ["GET", "POST"],
     credentials: true,
   },
-});
-
-app.use(cors({
-  origin: [
-    "https://whats-app-frontend-cgk5micwt-harshvardhan-pipariyas-projects.vercel.app",
-    "https://whats-app-frontend-4f8g38qc0-harshvardhan-pipariyas-projects.vercel.app"
-  ],
-  credentials: true,
-}));
+}); 
 
 app.use(express.json());
 app.use(cookieParser());
