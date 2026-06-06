@@ -176,6 +176,7 @@ export const sendOTP =
       }
 
       // send otp email
+      console.log(`Email sending`)
       await sendEmail(
         email,
 
