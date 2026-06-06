@@ -1,0 +1,30 @@
+    # Create .gitignore
+cat > .gitignore << 'EOF'
+node_modules/
+.env
+*.log
+.DS_Store
+dist/
+build/
+coverage/
+EOF
+
+# Add .env.example
+cat > .env.example << 'EOF'
+NODE_ENV=development
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/chatdb
+JWT_SECRET=your-secret-key
+CLIENT_URL=http://localhost:5173
+EOF
+
+# Initialize git if not already
+git init
+
+# Add files
+git add .
+git commit -m "Initial commit with .gitignore"
+
+# Push to GitHub
+git remote add origin https://github.com/yourusername/chat-backend.git
+git push -u origin main

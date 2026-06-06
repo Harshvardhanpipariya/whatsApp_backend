@@ -1,0 +1,28 @@
+# 🚀 Chat Application Backend
+
+A robust, real-time chat backend built with Node.js, Express.js, and Socket.IO for instant messaging with MongoDB for persistent storage.
+
+## 🛠️ Backend Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| **Node.js** | Runtime environment |
+| **Express.js** | Web framework for API routes |
+| **MongoDB with Mongoose** | Database & ODM for data modeling |
+| **Socket.IO** | Real-time bidirectional communication |
+| **JSON Web Tokens (JWT)** | Authentication & authorization |
+| **Bcrypt** | Password hashing for security |
+| **CORS** | Cross-origin resource sharing |
+
+## 📋 Prerequisites
+
+- Node.js (v18 or higher)
+- MongoDB (local or MongoDB Atlas)
+- npm or yarn package manager
+
+## 🚀 Installation
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/yourusername/chat-app-backend.git
+cd chat-app-backend
