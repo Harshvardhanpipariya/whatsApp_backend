@@ -14,14 +14,14 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://whats-app-frontend-pi.vercel.app/",
+    origin: "https://whats-app-frontend-pi.vercel.app",
     methods: ["GET", "POST"],
     credentials: true,
   },
 });
 
 app.use(cors({
-  origin: "https://whats-app-frontend-pi.vercel.app/",
+  origin: "https://whats-app-frontend-pi.vercel.app",
   credentials: true,
 }));
 
