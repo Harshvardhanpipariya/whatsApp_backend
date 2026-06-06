@@ -14,7 +14,10 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://whats-app-frontend-cgk5micwt-harshvardhan-pipariyas-projects.vercel.app",
+    origin: [
+      "https://whats-app-frontend-cgk5micwt-harshvardhan-pipariyas-projects.vercel.app",
+      "https://whats-app-frontend-4f8g38qc0-harshvardhan-pipariyas-projects.vercel.app"
+    ],
     methods: ["GET", "POST"],
     credentials: true,
   },
