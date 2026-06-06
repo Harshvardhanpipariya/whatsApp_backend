@@ -131,7 +131,7 @@ export const sendOTP =
         })
       }
 
-
+    console.log(name , email ,password +`all field`);
       // existing user
       const existingUser =
         await User.findOne({
@@ -139,6 +139,7 @@ export const sendOTP =
         })
 
       if (existingUser) {
+        console.log('User already exists')
         return res.status(400).json({
           message:
             'User already exists',
